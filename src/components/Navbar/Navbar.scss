@@ -1,0 +1,18 @@
+/*
+Author:      Zachary Thomas
+Created:     2/2/2022
+Modified:    2/2/2022
+-----------------------------------------------------------------
+*/
+
+.navbar-custom {
+  background-color: var(--primary-background);
+
+  .navbar-brand {
+    color: var(--title);
+  }
+
+  .navbar-brand:hover {
+    color: var(--title-hover);
+  }
+}

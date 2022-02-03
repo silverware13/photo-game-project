@@ -1,0 +1,34 @@
+/*
+Author:      Zachary Thomas
+Created:     2/2/2022
+Modified:    2/2/2022
+-----------------------------------------------------------------
+*/
+
+.title-bar {
+  color: var(--title);
+  background-color: var(--primary-background);
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+
+  .title-bar-size-1 {
+    font-size: 1rem;
+  }
+
+  .title-bar-size-2 {
+    font-size: 1.25rem;
+  }
+
+  .title-bar-size-3 {
+    font-size: 1.5rem;
+  }
+
+  .title-bar-size-4 {
+    font-size: 1.75rem;
+  }
+
+  .title-bar-size-5 {
+    font-size: 2rem;
+  }
+}

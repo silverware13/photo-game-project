@@ -1,0 +1,18 @@
+/*
+Author:      Zachary Thomas
+Created:     2/2/2022
+Modified:    2/2/2022
+-----------------------------------------------------------------
+*/
+
+.nav-item .nav-link {
+  color: var(--text-inactive);
+}
+
+.nav-item .nav-link:hover {
+  color: var(--text-hover);
+}
+
+.nav-item.nav-item-active .nav-link {
+  color: var(--text-active) !important;
+}

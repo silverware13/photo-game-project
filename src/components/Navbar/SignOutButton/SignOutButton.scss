@@ -1,0 +1,16 @@
+/*
+Author:      Zachary Thomas
+Created:     2/2/2022
+Modified:    2/2/2022
+-----------------------------------------------------------------
+*/
+
+.sign-out-button.btn {
+  color: var(--title);
+  background-color: var(--border-dark);
+  border-color: var(--border-dark);
+}
+
+.sign-out-button.btn:hover {
+  border-color: var(--text-inactive);
+}

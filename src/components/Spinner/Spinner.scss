@@ -1,0 +1,22 @@
+/*
+Author:      Zachary Thomas
+Created:     2/2/2022
+Modified:    2/2/2022
+-----------------------------------------------------------------
+*/
+
+.spinner-border {
+  color: var(--dark);
+}
+
+.spin-loader {
+  visibility: visible;
+  position: fixed;
+  margin-left: -75px;
+  margin-bottom: 75px;
+  left: 50%;
+  bottom: 50%;
+  width: 0;
+  height: 0;
+  z-index: 9999;
+}
