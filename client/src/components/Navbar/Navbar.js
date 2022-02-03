@@ -26,8 +26,8 @@ export default function Navbar(props) {
           <Fragment>
             <ul className="navbar-nav me-auto">
               <NavbarLink name="Play" targetPage="/play" currentPage={props.currentPage} />
-              <NavbarLink name="Create Category" targetPage="/create-category" currentPage={props.currentPage} />
-              <NavbarLink name="Edit Category" targetPage="/edit-category" currentPage={props.currentPage} />
+              <NavbarLink name="Create Album" targetPage="/create-album" currentPage={props.currentPage} />
+              <NavbarLink name="Edit Album" targetPage="/edit-album" currentPage={props.currentPage} />
             </ul>
 
             <div className="mx-2">
