@@ -16,28 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `album`
+-- Table structure for table `score`
 --
 
-DROP TABLE IF EXISTS `album`;
+DROP TABLE IF EXISTS `score`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `album` (
-  `album_id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`album_id`),
-  UNIQUE KEY `ui_album_name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `score` (
+  `score_id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `album_id` int NOT NULL,
+  `value` int NOT NULL,
+  PRIMARY KEY (`score_id`),
+  UNIQUE KEY `ui_user_album` (`user_id`,`album_id`),
+  KEY `fk_score_album_idx` (`album_id`),
+  CONSTRAINT `fk_score_album` FOREIGN KEY (`album_id`) REFERENCES `album` (`album_id`),
+  CONSTRAINT `fk_score_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `album`
+-- Dumping data for table `score`
 --
 
-LOCK TABLES `album` WRITE;
-/*!40000 ALTER TABLE `album` DISABLE KEYS */;
-INSERT INTO `album` VALUES (3,'birds'),(2,'cats'),(1,'dogs'),(4,'fish'),(5,'minerals');
-/*!40000 ALTER TABLE `album` ENABLE KEYS */;
+LOCK TABLES `score` WRITE;
+/*!40000 ALTER TABLE `score` DISABLE KEYS */;
+/*!40000 ALTER TABLE `score` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-02 22:56:03
+-- Dump completed on 2022-02-02 22:56:02
