@@ -1,20 +1,20 @@
 /*
 Author:      Zachary Thomas
-Created:     2/2/2022
-Modified:    2/2/2022
+Created:     2/6/2022
+Modified:    2/6/2022
 -----------------------------------------------------------------
 */
 
 // Setup database connection and routing.
-require("dotenv").config({silent: process.env.NODE_ENV === "production"});
-
-import express, { static } from "express";
-import { join } from "path";
-import { pool } from "./services/database/mysqlPool";
-import app from "./routes/index";
+import dotenv from "dotenv";
+import express from "express";
+import { pool } from "./utilities/database/mysqlPool.js";
+import app from "./routes/index.js";
 import { createServer } from "http";
-import { MAX_CONNECTION_ATTEMPTS } from "./utilities/constants";
+import { MAX_CONNECTION_ATTEMPTS } from "./utilities/constants.js";
 const fileApp = express();
+
+dotenv.config({silent: process.env.NODE_ENV === "production"})
 
 console.log("REST API start");
 console.log(`Running in ${process.env.NODE_ENV} mode`);
@@ -40,11 +40,11 @@ async function testConnection(pool, attempt, callback) {
 
 // Serve static files while in production mode.
 if (process.env.NODE_ENV === "production") {
-  fileApp.use(static(join(__dirname + "/client/", "build")));
-  fileApp.use(static(join(__dirname + "/client/", "files")));
+  fileApp.use(express.static(`${process.cwd()}/client/build`));
+  fileApp.use(express.static(`${process.cwd()}/client/files`));
 
   fileApp.get("/*", (req, res) => {
-    res.sendFile(join(__dirname + "/client/", "build", "index.html"));
+    res.sendFile(`${process.cwd()}/client/build/index.html`);
   });
 
   fileApp.listen(filePort, () => {
@@ -58,6 +58,5 @@ testConnection(pool, 1, () => {
     console.log("API server is listening on port", apiPort, "\n");
   });
 });
-
 
 export default app;

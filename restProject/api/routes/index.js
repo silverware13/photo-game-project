@@ -5,17 +5,16 @@ Modified:    2/6/2022
 -----------------------------------------------------------------
 */
 
-import { join } from "path";
-import { json } from "body-parser";
-import express, { urlencoded, static, json as _json } from "express";
+import express from "express";
 import cors from "cors";
 import logger from "morgan";
 import cookieParser from "cookie-parser";
+import user from "./user.js"
 const app = express();
 
 // Check that JSON body is valid.
 app.use((req, res, next) => {
-  json()(req, res, err => {
+  express.json()(req, res, err => {
     if (e) {
       console.error("400: Invalid JSON request body");
       res.status(400).send({error: "400: Invalid JSON request body"});
@@ -27,17 +26,14 @@ app.use((req, res, next) => {
 
 // General middleware.
 app.use(logger("dev"));
-app.use(urlencoded({extended: false}));
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(static(join(__dirname, "public")));
-app.use(cors({
-  origin: true,
-  credentials: true
-}));
-app.use(_json());
+app.use(express.static(`${process.cwd()}/public`));
+app.use(cors({origin: true, credentials: true}));
+app.use(express.json());
 
 // Handle api requests.
-app.use("/api/user", require("./user"));
+app.use("/api/user", user);
 
 // Unhandled API requests get a 404 error.
 app.all("/api/*", (req, res) => {

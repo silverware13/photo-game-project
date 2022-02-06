@@ -5,7 +5,7 @@ Modified:    2/6/2022
 -----------------------------------------------------------------
 */
 
-import { createPool } from "mysql2/promise";
+import { createPool } from "mysql2/promise.js";
 
 // Set the server information using environment variables.
 const mysqlPort = process.env.SQL_PORT || 3306;

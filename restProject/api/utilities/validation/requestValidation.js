@@ -9,22 +9,18 @@ import { check } from "express-validator";
 import {
   MIN_PASSWORD_LENGTH,
   MAX_PASSWORD_LENGTH
-} from "../constants";
+} from "../constants.js";
 
-const loginUser = Object.freeze({
+export const loginUserVal = Object.freeze({
   validation: [
     check("email").isEmail(),
     check("password").isLength({min: MIN_PASSWORD_LENGTH, max: MAX_PASSWORD_LENGTH})
   ]
 });
-const _loginUser = loginUser;
-export { _loginUser as loginUser };
 
-const postUser = Object.freeze({
+export const createUserVal = Object.freeze({
   validation: [
     check("email").isEmail(),
     check("password").isLength({min: MIN_PASSWORD_LENGTH, max: MAX_PASSWORD_LENGTH})
   ]
 });
-const _postUser = postUser;
-export { _postUser as postUser };

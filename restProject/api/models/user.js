@@ -5,8 +5,8 @@ Modified:    2/6/2022
 -----------------------------------------------------------------
 */
 
-import { pool } from "../services/database/mysqlPool";
-import { hashPassword, verifyHash } from "../services/authentication/saltHash";
+import { pool } from "../utilities/database/mysqlPool.js";
+import { hashPassword, verifyHash } from "../utilities/authentication/saltHash.js";
 
 // Login a user.
 export async function loginUser(email, password) {
@@ -39,7 +39,6 @@ export async function loginUser(email, password) {
   }
 }
 
-
 // Create a new user.
 export async function createUser(email, password) {
   try {
@@ -67,5 +66,4 @@ export async function createUser(email, password) {
   } catch (e) {
     throw Error(e);
   }
-
 }

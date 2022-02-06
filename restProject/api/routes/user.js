@@ -7,13 +7,13 @@ Modified:    2/6/2022
 
 import express from "express";
 import { validationResult } from "express-validator";
-import { setAuthCookie, generateAuthToken } from "../services/authentication/cookieAuth";
-import { postUser, loginUser } from "../services/validation/requestValidation";
-import { loginUser, createUser } from "../models/user";
+import { setAuthCookie, generateAuthToken } from "../utilities/authentication/cookieAuth.js";
+import { loginUserVal, createUserVal } from "../utilities/validation/requestValidation.js";
+import { loginUser, createUser } from "../models/user.js";
 const app = express();
 
 // Login a user.
-app.post("/login", loginUser.validation, async (req, res) => {
+app.post("/login", loginUserVal.validation, async (req, res) => {
   try {
     if (!validationResult(req).isEmpty()) {res.status(400).json({error: "Invalid request body / parameters"})}
 
@@ -37,7 +37,7 @@ app.post("/login", loginUser.validation, async (req, res) => {
 });
 
 // Create a new user.
-app.post("/", postUser.validation, async (req, res) => {
+app.post("/", createUserVal.validation, async (req, res) => {
   try {
     if (!validationResult(req).isEmpty()) {res.status(400).json({error: "Invalid request body / parameters"})}
 

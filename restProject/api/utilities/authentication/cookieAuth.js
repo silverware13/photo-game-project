@@ -5,12 +5,10 @@ Modified:    2/6/2022
 -----------------------------------------------------------------
 */
 
-import { pool } from "../database/mysqlPool";
+import { pool } from "../database/mysqlPool.js";
 import { parse, serialize } from "cookie";
 import assert from "assert";
-import { verify, sign } from "jsonwebtoken";
-import { isInt } from "validator";
-import { MIN_USER_ID, MAX_USER_ID, COOKIE_EXPIRES_MS } from "../constants";
+import { MIN_USER_ID, MAX_USER_ID, COOKIE_EXPIRES_MS } from "../constants.js";
 
 // Only allow admins to continue.
 export async function requireAdmin(userId) {
@@ -49,10 +47,10 @@ function requireAuth(req, res, next) {
 
     // Use the JWT service to verify the JWT.
     // This function call throws an error if the JWT is invalid.
-    const payload = verify(token, process.env.JWT_SECRET_KEY);
+    const payload = jsonwebtoken.verify(token, process.env.JWT_SECRET_KEY);
 
     // Check to make sure the user ID is valid.
-    assert(isInt(`${payload.sub}`, {min: MIN_USER_ID, max: MAX_USER_ID}));
+    assert(validator.isInt(`${payload.sub}`, {min: MIN_USER_ID, max: MAX_USER_ID}));
 
     // If verified, add an extra property to the request object.
     req.auth = {
@@ -75,7 +73,7 @@ export function generateAuthToken(userId) {
   const payload = {
     sub: userId
   };
-  const token = sign(payload, process.env.JWT_SECRET_KEY, {expiresIn: JWT_EXPIRES_HR});
+  const token = jsonwebtoken.sign(payload, process.env.JWT_SECRET_KEY, {expiresIn: JWT_EXPIRES_HR});
   return token;
 }
 
