@@ -26,8 +26,7 @@ CREATE TABLE `user` (
   `user_id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `admin` tinyint NOT NULL DEFAULT '0',
-  `salt` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password_hash` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hash` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `ui_user_email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -39,7 +38,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'zachary.thomas.dev@gmail.com',1,'@#42034','a34234!0wfkEwo2@');
+INSERT INTO `user` VALUES (1,'zachary.thomas.dev@gmail.com',1,'a34234!0wfkEwo2@');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-02 22:56:02
+-- Dump completed on 2022-02-06  2:47:55
