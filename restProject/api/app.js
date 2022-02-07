@@ -6,15 +6,13 @@ Modified:    2/6/2022
 */
 
 // Setup database connection and routing.
-import dotenv from "dotenv";
+import "dotenv/config.js";
 import express from "express";
 import { pool } from "./utilities/database/mysqlPool.js";
 import app from "./routes/index.js";
 import { createServer } from "http";
 import { MAX_CONNECTION_ATTEMPTS } from "./utilities/constants.js";
 const fileApp = express();
-
-dotenv.config({silent: process.env.NODE_ENV === "production"})
 
 console.log("REST API start");
 console.log(`Running in ${process.env.NODE_ENV} mode`);
@@ -25,7 +23,7 @@ const filePort = process.env.FILE_PORT || 2222;
 // Confirm that a connection was made to the database.
 async function testConnection(pool, attempt, callback) {
   try {
-    await pool.query("SELECT userId FROM Users");
+    await pool.query("SELECT user_id FROM photo_game.user;");
     console.log("Connected to database");
     callback();
   } catch (e) {
@@ -33,7 +31,7 @@ async function testConnection(pool, attempt, callback) {
       console.error(`Attempt ${attempt}: Error connecting to database...\nRestarting...`);
       testConnection(pool, attempt + 1, callback);
     } else {
-      console.error(`Final Attempt: Error connecting to database\n`, err);
+      console.error(`Final Attempt: Error connecting to database\n`, e);
     }
   }
 }

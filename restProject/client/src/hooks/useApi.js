@@ -1,7 +1,7 @@
 /*
 Author:      Zachary Thomas
 Created:     2/2/2022
-Modified:    2/2/2022
+Modified:    2/6/2022
 -----------------------------------------------------------------
 */
 
@@ -47,9 +47,9 @@ export default function useApi(openingFunction, apiRequest, closingFunction, dep
       try {
         if (!ignore) {
           if (!apiRequest.method) {
-            throw "apiRequest must have a method";
+            throw Error("apiRequest must have a method");
           } else if (!apiRequest.url) {
-            throw "apiRequest must have a url";
+            throw Error("apiRequest must have a url");
           }
 
           let authorizationToken = "";

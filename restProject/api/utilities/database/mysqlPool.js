@@ -6,6 +6,7 @@ Modified:    2/6/2022
 */
 
 import { createPool } from "mysql2/promise.js";
+import { MAX_CONNECTIONS } from "../constants.js"
 
 // Set the server information using environment variables.
 const mysqlPort = process.env.SQL_PORT || 3306;
@@ -15,7 +16,6 @@ const mysqlPassword = process.env.SQL_PASSWORD;
 const mysqlDatabase = process.env.SQL_DB_NAME;
 
 // Create a MySQL resource pool.
-const MAX_CONNECTIONS = 100;
 const pool = createPool({
   port: mysqlPort,
   host: mysqlHost,
