@@ -14,7 +14,7 @@ const app = express();
 
 // Check that JSON body is valid.
 app.use((req, res, next) => {
-  express.json()(req, res, err => {
+  express.json()(req, res, e => {
     if (e) {
       console.error("400: Invalid JSON request body");
       res.status(400).send({error: "400: Invalid JSON request body"});

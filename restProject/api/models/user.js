@@ -12,7 +12,7 @@ import { hashPassword, verifyHash } from "../utilities/authentication/saltHash.j
 export async function loginUser(email, password) {
   try {
     // Check if user exists.
-    const sql = "SELECT user_id, username, email, admin, hash"
+    const sql = "SELECT user_id, email, admin, hash"
     + " FROM user"
     + " WHERE email = ?;";
     const result = await pool.query(sql, [email]);
@@ -25,7 +25,6 @@ export async function loginUser(email, password) {
     if (verifyHash(password, result[0][0].hash)) {
       const responseBody = {
         userId: result[0][0].user_id,
-        username: result[0][0].username,
         email: result[0][0].email,
         admin: result[0][0].admin
       };
@@ -46,16 +45,16 @@ export async function createUser(email, password) {
     let sql = "SELECT *"
     + " FROM user"
     + " WHERE email = ?;";
-    let result = await pool.query(sql, email);
+    let result = await pool.query(sql, [email]);
 
     if (result[0].length) {
       return {error: "Email address is already in use."};
     }
 
     // Create the new user.
-    sql = "INSERT INTO Users (email, admin, hash)"
+    sql = "INSERT INTO user (email, admin, hash)"
     + " VALUES(?, 0, ?);";
-    hash = hashPassword(password);
+    const hash = hashPassword(password);
     result = await pool.query(sql, [email, hash]);
 
     const responseBody = {
