@@ -1,7 +1,7 @@
 /*
 Author:      Zachary Thomas
 Created:     2/6/2022
-Modified:    2/6/2022
+Modified:    2/10/2022
 -----------------------------------------------------------------
 */
 
@@ -9,6 +9,7 @@ import express from "express";
 import cors from "cors";
 import logger from "morgan";
 import cookieParser from "cookie-parser";
+import album from "./album.js"
 import user from "./user.js"
 const app = express();
 
@@ -32,7 +33,8 @@ app.use(express.static(`${process.cwd()}/public`));
 app.use(cors({origin: true, credentials: true}));
 app.use(express.json());
 
-// Handle api requests.
+// Handle API requests.
+app.use("/api/album", album);
 app.use("/api/user", user);
 
 // Unhandled API requests get a 404 error.
