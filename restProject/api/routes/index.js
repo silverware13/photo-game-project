@@ -40,7 +40,7 @@ app.use("/api/user", user);
 // Unhandled API requests get a 404 error.
 app.all("/api/*", (req, res) => {
   console.error("404: Endpoint not found\n");
-  res.status(404).send({error: "Not Found"});
+  res.status(404).send({error: "Endpoint not found."});
 });
 
 export default app;

@@ -1,7 +1,7 @@
 /*
 Author:      Zachary Thomas
 Created:     2/6/2022
-Modified:    2/6/2022
+Modified:    2/10/2022
 -----------------------------------------------------------------
 */
 
@@ -12,7 +12,7 @@ import { hashPassword, verifyHash } from "../utilities/authentication/saltHash.j
 export async function loginUser(email, password) {
   try {
     // Check if user exists.
-    const sql = "SELECT user_id, email, admin, hash"
+    const sql = "SELECT user_id, email, name, admin, hash"
     + " FROM user"
     + " WHERE email = ?;";
     const result = await pool.query(sql, [email]);
@@ -26,6 +26,7 @@ export async function loginUser(email, password) {
       const responseBody = {
         userId: result[0][0].user_id,
         email: result[0][0].email,
+        name: result[0][0].name,
         admin: result[0][0].admin
       };
       return responseBody;
@@ -39,7 +40,7 @@ export async function loginUser(email, password) {
 }
 
 // Create a new user.
-export async function createUser(email, password) {
+export async function createUser(email, name, password) {
   try {
     // Make sure that the email address is not already in use.
     let sql = "SELECT *"
@@ -52,10 +53,10 @@ export async function createUser(email, password) {
     }
 
     // Create the new user.
-    sql = "INSERT INTO user (email, admin, hash)"
-    + " VALUES(?, 0, ?);";
+    sql = "INSERT INTO user (email, name, admin, hash)"
+    + " VALUES(?, ?, 0, ?);";
     const hash = hashPassword(password);
-    result = await pool.query(sql, [email, hash]);
+    result = await pool.query(sql, [email, name, hash]);
 
     const responseBody = {
       userId: result[0].insertId

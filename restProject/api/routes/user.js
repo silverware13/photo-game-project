@@ -1,14 +1,14 @@
 /*
 Author:      Zachary Thomas
 Created:     2/6/2022
-Modified:    2/6/2022
+Modified:    2/10/2022
 -----------------------------------------------------------------
 */
 
 import express from "express";
 import { validationResult } from "express-validator";
-import { setAuthCookie, generateAuthToken } from "../utilities/authentication/cookieAuth.js";
 import { loginUserVal, createUserVal } from "../utilities/validation/requestValidation.js";
+import { setAuthCookie, generateAuthToken } from "../utilities/authentication/cookieAuth.js";
 import { loginUser, createUser } from "../models/user.js";
 const app = express();
 
@@ -48,7 +48,7 @@ app.post("/", createUserVal.validation, async (req, res) => {
       return;
     }
 
-    const result = await createUser(req.body.email.trim(), req.body.password.trim());
+    const result = await createUser(req.body.email.trim(), req.body.name.trim(), req.body.password.trim());
 
     if (result.userId) {
       const token = generateAuthToken(result.userId);
