@@ -25,11 +25,12 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `user_id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `admin` tinyint NOT NULL DEFAULT '0',
   `hash` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `ui_user_email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +39,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'zachary.thomas.dev@gmail.com',1,'a34234!0wfkEwo2@');
+INSERT INTO `user` VALUES (6,'testUser@gmail.com','Test User',0,'3ee583035f2f84469044792aaf79a3af$ef7c4a5cfa3fb96835bd10f23d65f5352cfd4cd3ff28ab7c7be4e14e4d9b1628'),(7,'testAdmin@gmail.com','Test Admin',1,'6fe675137dc35f386e6a6931c662c57f$832d09dbcb5e269ef1428a1c0685db115b2139d5c217f9402711261bbf28b1f1');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-06  2:47:55
+-- Dump completed on 2022-02-10 22:40:35

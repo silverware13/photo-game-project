@@ -27,6 +27,8 @@ CREATE TABLE `score` (
   `user_id` int NOT NULL,
   `album_id` int NOT NULL,
   `value` int NOT NULL,
+  `created_utc` datetime NOT NULL,
+  `modified_utc` datetime NOT NULL,
   PRIMARY KEY (`score_id`),
   UNIQUE KEY `ui_user_album` (`user_id`,`album_id`),
   KEY `fk_score_album_idx` (`album_id`),
@@ -53,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-06  2:47:55
+-- Dump completed on 2022-02-10 22:40:35
