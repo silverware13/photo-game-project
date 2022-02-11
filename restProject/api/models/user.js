@@ -18,7 +18,7 @@ export async function loginUser(email, password) {
     const result = await pool.query(sql, [email]);
 
     if (!result[0].length) {
-      return {error: "Incorrect email address or password."};
+      return { error: "Incorrect email address or password.", status: 400 };
     }
 
     // Verify that the password is correct.
@@ -32,7 +32,7 @@ export async function loginUser(email, password) {
       return responseBody;
 
     } else {
-      return {error: "Incorrect email address or password."};
+      return { error: "Incorrect email address or password.", status: 400 };
     }
   } catch (e) {
     throw Error(e);
@@ -49,7 +49,7 @@ export async function createUser(email, name, password) {
     let result = await pool.query(sql, [email]);
 
     if (result[0].length) {
-      return {error: "Email address is already in use."};
+      return { error: "Email address is already in use.", status: 400 };
     }
 
     // Create the new user.

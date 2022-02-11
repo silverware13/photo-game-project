@@ -18,7 +18,7 @@ app.use((req, res, next) => {
   express.json()(req, res, e => {
     if (e) {
       console.error("400: Invalid JSON request body");
-      res.status(400).send({error: "400: Invalid JSON request body"});
+      res.status(400).send({ error: "400: Invalid JSON request body" });
     } else {
       next();
     }
@@ -40,7 +40,7 @@ app.use("/api/user", user);
 // Unhandled API requests get a 404 error.
 app.all("/api/*", (req, res) => {
   console.error("404: Endpoint not found\n");
-  res.status(404).send({error: "Endpoint not found."});
+  res.status(404).send({ error: "Endpoint not found." });
 });
 
 export default app;

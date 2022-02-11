@@ -39,7 +39,6 @@ export async function requireAdmin(userId) {
 // If the user is unauthorized then they will receive a 401 error and the next function will be ignored.
 export function requireAuth(req, res, next) {
   try {
-    req.auth = {};
     const cookieObj = parse(`${req.headers.cookie}`);
 
     // Ensure that all of expected cookies are present.
@@ -48,7 +47,7 @@ export function requireAuth(req, res, next) {
     assert(cookieObj.auth, "No auth cookie provided with request");
 
     // get the JWT from the cookie.
-    const token = cookieObj.auth_ck;
+    const token = cookieObj.auth;
 
     // Use the JWT service to verify the JWT.
     // This function call throws an error if the JWT is invalid.
@@ -58,16 +57,14 @@ export function requireAuth(req, res, next) {
     assert(validator.isInt(`${payload.sub}`, {min: MIN_USER_ID, max: MAX_USER_ID}));
 
     // If verified, add an extra property to the request object.
-    req.auth = {
-      userId: payload.sub
-    };
+    req.auth.userId = payload.sub;
 
     // If there were no issues we route to the next middleware.
     next();
 
   } catch (e) {
-    console.error(`Authentication error: ${err}`);
-    res.status(401).send({error: "Missing or invalid credentials."});
+    console.error(`Authentication error: ${e}`);
+    res.status(401).send({ error: "Missing or invalid authorization credentials." });
   }
 }
 

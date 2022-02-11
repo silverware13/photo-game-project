@@ -1,7 +1,7 @@
 /*
 Author:      Zachary Thomas
 Created:     2/6/2022
-Modified:    2/6/2022
+Modified:    2/10/2022
 -----------------------------------------------------------------
 */
 
@@ -31,5 +31,12 @@ export const createUserVal = Object.freeze({
 export const getQuestionVal = Object.freeze({
   validation: [
     check("albumId").isInt({min: 1, max: 4294967295})
+  ]
+});
+
+export const putScoreVal = Object.freeze({
+  validation: [
+    check("albumId").isInt({min: 1, max: 4294967295}),
+    check("score").isInt({min: 1, max: 4294967295})
   ]
 });

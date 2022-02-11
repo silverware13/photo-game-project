@@ -16,7 +16,7 @@ const app = express();
 app.post("/login", loginUserVal.validation, async (req, res) => {
   try {
     if (!validationResult(req).isEmpty()) {
-      res.status(400).json({error: "Invalid request body / parameters", details: validationResult(req).errors});
+      res.status(400).json({ error: "Invalid request body / parameters", details: validationResult(req).errors });
       return;
     }
 
@@ -29,14 +29,14 @@ app.post("/login", loginUserVal.validation, async (req, res) => {
 
     } else {
       if (result.error) {
-        res.status(400).send({error: result.error});
+        res.status(result.status).send({ error: result.error });
       } else {
-        res.status(500).send({error: "An internal server error occurred. Please try again later."});
+        res.status(500).send({ error: "An internal server error occurred. Please try again later." });
       }
     }
   } catch (e) {
     console.error(e);
-    res.status(500).send({error: "An internal server error occurred. Please try again later."});
+    res.status(500).send({ error: "An internal server error occurred. Please try again later." });
   }
 });
 
@@ -44,7 +44,7 @@ app.post("/login", loginUserVal.validation, async (req, res) => {
 app.post("/", createUserVal.validation, async (req, res) => {
   try {
     if (!validationResult(req).isEmpty()) {
-      res.status(400).json({error: "Invalid request body / parameters", details: validationResult(req).errors});
+      res.status(400).json({ error: "Invalid request body / parameters", details: validationResult(req).errors });
       return;
     }
 
@@ -57,14 +57,14 @@ app.post("/", createUserVal.validation, async (req, res) => {
 
     } else {
       if (result.error) {
-        res.status(400).send({error: result.error});
+        res.status(result.status).send({ error: result.error });
       } else {
-        res.status(500).send({error: "An internal server error occurred. Please try again later."});
+        res.status(500).send({ error: "An internal server error occurred. Please try again later." });
       }
     }
   } catch (e) {
     console.error(e);
-    res.status(500).send({error: "An internal server error occurred. Please try again later."});
+    res.status(500).send({ error: "An internal server error occurred. Please try again later." });
   }
 });
 
