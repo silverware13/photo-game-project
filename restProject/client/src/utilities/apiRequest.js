@@ -24,23 +24,19 @@ export default async function apiRequest(url, method, body, authorization) {
       }
 
       response = await fetch(url, {
+        credentials: "include",
         method: method,
         body: JSON.stringify(body),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: authorization
-        }
+        headers: {"Content-Type": "application/json"}
       });
 
     } else {
       // Don't include the body if there is no valid body to send.
       console.log(`Request: ${method} ${url}`);
       response = await fetch(url, {
+        credentials: "include",
         method: method,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: authorization
-        }
+        headers: {"Content-Type": "application/json"}
       });
     }
 

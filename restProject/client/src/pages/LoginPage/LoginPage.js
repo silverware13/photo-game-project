@@ -1,73 +1,70 @@
 /*
 Author:      Zachary Thomas
 Created:     2/2/2022
-Modified:    2/2/2022
+Modified:    2/11/2022
 -----------------------------------------------------------------
 */
 
 import React, { useState } from "react";
 import PageTitle from "../../components/PageTitle/PageTitle";
 import LoginForm from "./LoginForm/LoginForm";
+import Spinner from "../../components/Spinner/Spinner";
+import apiRequest from "../../utilities/apiRequest";
 import { useHistory } from "react-router-dom";
-import { USER_POOL } from "../../utilities/constants";
-import { CognitoUser, CognitoUserPool, AuthenticationDetails } from "amazon-cognito-identity-js";
+import { API } from "../../utilities/constants";
 import "./LoginPage.scss";
 
 // Page for users to login to their account.
 export default function LoginPage() {
-  const [error, setError] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
-  const userPool = new CognitoUserPool(USER_POOL);
 
-  // Attempts to login a user using the Cognito API.
+  // Attempts to login a user using the API.
   async function submit(email, password) {
     if (!email.length) {
-      setError("Please enter an email.");
+      setErrorMessage("Please enter an email.");
+
     } else if (!password.length) {
-      setError("Please enter a password.");
+      setErrorMessage("Please enter a password.");
+
     } else {
+      const requestBody = {
+        email: email,
+        password: password
+      }
 
-      const user = new CognitoUser({
-        Username: email,
-        Pool: userPool
-      });
+      setLoading(true);
+      const [response, responseBody] = await apiRequest(
+        `${API}/user/login`,
+        "POST",
+        requestBody
+      );
+      setLoading(false);
 
-      const authDetails = new AuthenticationDetails({
-        Username: email,
-        Password: password
-      });
+      if (response.ok) {
+        setErrorMessage("");
+        history.push("/");
 
-      user.authenticateUser(authDetails, {
-        onSuccess: data => {
-          const token = data.getIdToken().getJwtToken();
-          localStorage.setItem("idToken", token);
-          history.push("/");
-        },
-        onFailure: err => {
-          console.error("onFailure:", err);
-          setError(err.message);
-        },
-        newPasswordRequired: data => {
-          console.error("newPasswordRequired:", data);
+      } else {
+        if (response.status < 500 && responseBody.error) {
+          setErrorMessage(responseBody.error);
+        } else {
+          setErrorMessage("Internal server error. Unable to login.");
         }
-      });
+      }
     }
-  }
-
-  // Skip the login form and pretend that we logged in.
-  function skip() {
-    localStorage.setItem("idToken", "FAKE");
-    history.push("/");
   }
 
   return (
     <div className="page-login mb-4">
+      <Spinner loading={loading} />
+
       <PageTitle title={`User Login`} />
 
       <LoginForm
-        errorMessage={error}
+        errorMessage={errorMessage}
         onSubmit={(email, password) => submit(email, password)}
-        onSkip={() => skip()}
       />
     </div>
   );

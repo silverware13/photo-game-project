@@ -1,19 +1,22 @@
 /*
 Author:      Zachary Thomas
-Created:     2/2/2022
+Created:     2/11/2022
 Modified:    2/11/2022
 -----------------------------------------------------------------
 */
 
 import React from "react";
 import { shallow } from "enzyme";
-import LoginForm from "./LoginForm";
+import Album from "./Album";
 
 it("Component renders without crashing", () => {
   shallow(
-    <LoginForm
-      errorMessage="You must enter an email address."
-      onSubmit={() => { }}
+    <Album
+      albumId={1}
+      name={"dogs"}
+      personalHighScore={10}
+      globalHighScore={25}
+      globalUser={"Test User"}
     />
   );
 });

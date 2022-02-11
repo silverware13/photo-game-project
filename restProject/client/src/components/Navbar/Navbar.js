@@ -25,7 +25,7 @@ export default function Navbar(props) {
         {props.currentPage !== "/login" && (
           <Fragment>
             <ul className="navbar-nav me-auto">
-              <NavbarLink name="Play" targetPage="/play" currentPage={props.currentPage} />
+              <NavbarLink name="Play" targetPage="/" currentPage={props.currentPage} />
               <NavbarLink name="Create Album" targetPage="/create-album" currentPage={props.currentPage} />
               <NavbarLink name="Edit Album" targetPage="/edit-album" currentPage={props.currentPage} />
             </ul>

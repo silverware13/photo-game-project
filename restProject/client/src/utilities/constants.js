@@ -7,11 +7,7 @@ Modified:    2/2/2022
 
 // Constants that are referenced throughout the application.
 module.exports = Object.freeze({
-  USER_POOL: {
-    UserPoolId: "us-west-2_Kaqr4pUtc",
-    ClientId: "3h2rt1adfd9gidtrf1a1oj3qi0"
-  },
-  API: "https://swapi.dev/api",
+  API: "http://localhost:5000/api",
   MIN_TEXT_LENGTH: 1,
   MAX_TEXT_LENGTH: 100,
   MS_PER_SECOND: 1000,

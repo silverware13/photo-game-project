@@ -1,7 +1,7 @@
 /*
 Author:      Zachary Thomas
 Created:     2/2/2022
-Modified:    2/6/2022
+Modified:    2/11/2022
 -----------------------------------------------------------------
 */
 
@@ -52,11 +52,6 @@ export default function useApi(openingFunction, apiRequest, closingFunction, dep
             throw Error("apiRequest must have a url");
           }
 
-          let authorizationToken = "";
-          if (apiRequest.authorization) {
-            authorizationToken = apiRequest.authorization;
-          }
-
           // Check if there is a body object to send.
           if (apiRequest.body) {
             // Omit the request body log if it contains sensitive information.
@@ -70,25 +65,21 @@ export default function useApi(openingFunction, apiRequest, closingFunction, dep
             }
 
             response = await fetch(apiRequest.url, {
+              credentials: "include",
               signal: controller.signal,
               method: apiRequest.method,
               body: JSON.stringify(apiRequest.body),
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: authorizationToken
-              }
+              headers: {"Content-Type": "application/json"}
             });
 
           } else {
             // Don't include the body if there is no valid body to send.
             console.log(`Request: ${apiRequest.method} ${apiRequest.url}`);
             response = await fetch(apiRequest.url, {
+              credentials: "include",
               signal: controller.signal,
               method: apiRequest.method,
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: authorizationToken
-              }
+              headers: {"Content-Type": "application/json"}
             });
           }
 

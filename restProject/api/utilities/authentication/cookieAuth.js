@@ -27,7 +27,7 @@ export async function requireAdmin(userId) {
     const results = await pool.query(sql, userId);
 
     assert(results[0].length, "User not found");
-    assert(results[0][0].admin >= minRole, "User is not an admin");
+    assert(results[0][0].admin === 0, "User is not an admin");
 
     return true;
 
@@ -41,6 +41,7 @@ export async function requireAdmin(userId) {
 export function requireAuth(req, res, next) {
   try {
     const cookieObj = parse(`${req.headers.cookie}`);
+    console.log("COOKIE", cookieObj)
 
     // Ensure that all of expected cookies are present.
     assert(cookieObj === Object(cookieObj), "No cookie provided with request");

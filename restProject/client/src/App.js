@@ -1,12 +1,12 @@
 /*
 Author:      Zachary Thomas
 Created:     2/2/2022
-Modified:    2/2/2022
+Modified:    2/11/2022
 -----------------------------------------------------------------
 */
 
 import React, { useEffect, Fragment } from "react";
-import { Route, Switch, Redirect, useLocation, useHistory } from "react-router-dom";
+import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -30,16 +30,12 @@ export default function App() {
 
   return (
     <Fragment>
-      <Navbar title={"Example"} currentPage={currentPage} />
+      <Navbar title={"Photo Game Project"} currentPage={currentPage} />
 
       <main>
         <div className="app container">
           <Switch>
             <Route exact path="/">
-              <Redirect to="/basic-rendering" />
-            </Route>
-
-            <Route path="/basic-rendering">
               <HomePage />
             </Route>
 

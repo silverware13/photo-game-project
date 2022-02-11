@@ -1,7 +1,7 @@
 /*
 Author:      Zachary Thomas
-Created:     2/2/2022
-Modified:    2/2/2022
+Created:     2/11/2022
+Modified:    2/11/2022
 -----------------------------------------------------------------
 */
 
@@ -62,13 +62,6 @@ export default function LoginForm(props) {
             >
               Login
             </button>
-
-            <button type="submit" id="submit-login"
-              className="login-btn btn btn-secondary w-25 mx-3"
-              onClick={() => props.onSkip()}
-            >
-              Skip Login
-            </button>
           </div>
 
           <Error message={props.errorMessage} />
@@ -80,6 +73,5 @@ export default function LoginForm(props) {
 
 LoginForm.propTypes = {
   errorMessage: PropTypes.string.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  onSkip: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired
 };
