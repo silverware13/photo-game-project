@@ -70,7 +70,7 @@ export async function putScore(albumId, score, userId) {
     + " FROM score"
     + " WHERE user_id = ?"
     + " AND album_id = ?"
-    + " AND value > ?;"
+    + " AND value >= ?;"
     let result = await pool.query(sql, [userId, albumId, score]);
 
     if (result[0].length > 0) {

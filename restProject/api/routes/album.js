@@ -58,7 +58,7 @@ app.put("/:albumId/score", requireAuth, putScoreVal.validation, async (req, res)
       return;
     }
 
-    const result = await putScore(req.params.albumId, req.body.score, req.query.userId);
+    const result = await putScore(req.params.albumId, req.body.score, req.auth.userId);
     if (result.message) {
       res.status(200).send(result);
 

@@ -9,6 +9,7 @@ import { pool } from "../database/mysqlPool.js";
 import { parse, serialize } from "cookie";
 import jwt from "jsonwebtoken";
 import assert from "assert";
+import validator from "validator";
 import {
   MIN_USER_ID,
   MAX_USER_ID,
@@ -57,6 +58,7 @@ export function requireAuth(req, res, next) {
     assert(validator.isInt(`${payload.sub}`, {min: MIN_USER_ID, max: MAX_USER_ID}));
 
     // If verified, add an extra property to the request object.
+    req.auth = {}
     req.auth.userId = payload.sub;
 
     // If there were no issues we route to the next middleware.
