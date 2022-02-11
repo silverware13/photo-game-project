@@ -8,12 +8,58 @@ Modified:    2/10/2022
 import { pool } from "../utilities/database/mysqlPool.js";
 
 // Get all albums.
-export async function getAlbums() {
+export async function getAlbums(userId) {
   try {
-    const sql = "SELECT album_id AS albumId, name FROM album;";
-    const result = await pool.query(sql, []);
+    // Get all albums.
+    let sql = "SELECT album_id AS albumId, name FROM album;";
+    let result = await pool.query(sql, []);
+    const albums = result[0];
+
+    // Get the overall high score for each album.
+    sql = "SELECT a.album_id AS albumId, MAX(s.value) AS value, u.name AS username"
+    + " FROM album a"
+    + " JOIN score s ON(s.album_id = a.album_id)"
+    + " JOIN user u ON(u.user_id = s.user_id)"
+    + " GROUP BY a.album_id;";
+    result = await pool.query(sql, []);
+    const globalHighScores = result[0];
+
+    // Get the personal high score for each album.
+    sql = "SELECT a.album_id AS albumId, MAX(s.value) AS value"
+    + " FROM album a"
+    + " JOIN score s ON(s.album_id = a.album_id)"
+    + " WHERE s.user_id = ?"
+    + " GROUP BY a.album_id;";
+    result = await pool.query(sql, [userId]);
+    const personalHighScores = result[0];
+
+    // Assign the high score details to each album.
+    albums.forEach(album => {
+      const globalHighScore = globalHighScores.find(highScore =>
+        highScore.albumId === album.albumId
+      );
+
+      if (globalHighScore === undefined) {
+        album.globalHighScore = 0;
+        album.globalUser = null
+      } else {
+        album.globalHighScore = globalHighScore.value;
+        album.globalUser = globalHighScore.username
+      }
+
+      const personalHighScore = personalHighScores.find(highScore =>
+        highScore.albumId === album.albumId
+      );
+
+      if (personalHighScore === undefined) {
+        album.personalHighScore = 0;
+      } else {
+        album.personalHighScore = personalHighScore.value;
+      }
+    });
+
     const responseBody = {
-        albums: result[0]
+        albums: albums
       };
     return responseBody;
 

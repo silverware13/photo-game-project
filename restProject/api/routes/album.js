@@ -13,9 +13,9 @@ import { getAlbums, getQuestion, putScore } from "../models/album.js";
 const app = express();
 
 // Get all albums.
-app.get("/", async (req, res) => {
+app.get("/", requireAuth, async (req, res) => {
   try {
-    const result = await getAlbums();
+    const result = await getAlbums(req.auth.userId);
     res.status(200).send(result);
 
   } catch (e) {
