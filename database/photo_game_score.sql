@@ -30,11 +30,11 @@ CREATE TABLE `score` (
   `created_utc` datetime NOT NULL,
   `modified_utc` datetime NOT NULL,
   PRIMARY KEY (`score_id`),
-  UNIQUE KEY `ui_user_album` (`user_id`,`album_id`),
+  UNIQUE KEY `ui_score_user_album` (`user_id`,`album_id`),
   KEY `fk_score_album_idx` (`album_id`),
   CONSTRAINT `fk_score_album` FOREIGN KEY (`album_id`) REFERENCES `album` (`album_id`),
   CONSTRAINT `fk_score_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,6 +43,7 @@ CREATE TABLE `score` (
 
 LOCK TABLES `score` WRITE;
 /*!40000 ALTER TABLE `score` DISABLE KEYS */;
+INSERT INTO `score` VALUES (1,7,1,144,'2022-02-11 07:40:24','2022-02-11 07:49:23'),(8,6,1,503,'2022-02-11 09:25:37','2022-02-11 09:27:00');
 /*!40000 ALTER TABLE `score` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-10 22:40:35
+-- Dump completed on 2022-02-11  2:25:51
