@@ -32,7 +32,7 @@ CREATE TABLE `photo` (
   `modified_utc` datetime NOT NULL,
   PRIMARY KEY (`photo_id`),
   UNIQUE KEY `ui_photo_album_answer_image` (`album_id`,`answer`,`image_url`),
-  KEY `fk_photo_user_idx` (`user_id`),
+  KEY `fk_photo_user` (`user_id`) /*!80000 INVISIBLE */,
   CONSTRAINT `fk_photo_album` FOREIGN KEY (`album_id`) REFERENCES `album` (`album_id`),
   CONSTRAINT `fk_photo_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-11  2:25:52
+-- Dump completed on 2022-02-11  2:32:29

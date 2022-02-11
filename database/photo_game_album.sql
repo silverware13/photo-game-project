@@ -30,8 +30,8 @@ CREATE TABLE `album` (
   `modified_utc` datetime NOT NULL,
   PRIMARY KEY (`album_id`),
   UNIQUE KEY `ui_album_name` (`name`),
-  KEY `album_user_idx` (`user_id`),
-  CONSTRAINT `album_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  KEY `fk_album_user` (`user_id`),
+  CONSTRAINT `fk_album_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-11  2:25:52
+-- Dump completed on 2022-02-11  2:32:29
