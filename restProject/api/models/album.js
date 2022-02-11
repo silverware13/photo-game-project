@@ -120,7 +120,10 @@ export async function putScore(albumId, score, userId) {
     let result = await pool.query(sql, [userId, albumId, score]);
 
     if (result[0].length > 0) {
-      return { message: "The current user already has a higher score for this album." }
+      const responseBody = {
+        message: "The current user already has a higher score for this album."
+      }
+      return responseBody;
     }
 
     // Submit the new high score.
