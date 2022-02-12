@@ -16,11 +16,18 @@ export async function getAlbums(userId) {
     const albums = result[0];
 
     // Get the overall high score for each album.
-    sql = "SELECT a.album_id AS albumId, MAX(s.value) AS value, u.name AS username"
+    sql = "SELECT a.album_id AS albumId, s.value AS value, u.name AS username"
     + " FROM album a"
     + " JOIN score s ON(s.album_id = a.album_id)"
     + " JOIN user u ON(u.user_id = s.user_id)"
-    + " GROUP BY a.album_id;";
+    + " INNER JOIN ("
+    + "   SELECT album.album_id AS albumId, MAX(score.value) AS value, user.name AS username"
+    + "   FROM album"
+    + "   JOIN score ON(score.album_id = album.album_id)"
+    + "   JOIN user ON(user.user_id = score.user_id)"
+    + "   GROUP BY album.album_id"
+    + " ) AS a2"
+    + " ON a.album_id = a2.albumId AND s.value = a2.value;";
     result = await pool.query(sql, []);
     const globalHighScores = result[0];
 

@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import HomePage from "./pages/HomePage/HomePage";
+import QuestionPage from "./pages/QuestionPage/QuestionPage";
 import Error404Page from "./pages/Error404Page/Error404Page";
 import Error500Page from "./pages/Error500Page/Error500Page";
 import "./App.css";
@@ -41,6 +42,10 @@ export default function App() {
 
             <Route path="/login">
               <LoginPage />
+            </Route>
+
+            <Route path="/album/:albumId">
+              <QuestionPage />
             </Route>
 
             <Route path="/error-500">

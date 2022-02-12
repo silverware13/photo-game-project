@@ -1,0 +1,36 @@
+/*
+Author:      Zachary Thomas
+Created:     2/11/2022
+Modified:    2/11/2022
+-----------------------------------------------------------------
+*/
+
+.page-question {
+  text-align: center;
+
+  #guess-image {
+    overflow: hidden;
+    margin: 2rem 0;
+    width: auto;
+    height: 400px;
+    border-radius: 30px;
+  }
+
+  #score {
+    font-size: 1.75rem;
+  }
+
+  .button-guess {
+    color: var(--title);
+    min-width: 300px;
+    text-align: center;
+  }
+
+  .button-guess:hover {
+    color: var(--title);
+  }
+
+  .button-guess:focus {
+    color: var(--title);
+  }
+}
