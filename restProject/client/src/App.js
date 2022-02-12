@@ -5,8 +5,8 @@ Modified:    2/11/2022
 -----------------------------------------------------------------
 */
 
-import React, { useEffect, Fragment } from "react";
-import { Route, Switch, useLocation, useHistory } from "react-router-dom";
+import React, { Fragment } from "react";
+import { Route, Switch, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -19,15 +19,6 @@ import "./App.css";
 // Handles page routing and getting theme data.
 export default function App() {
   const currentPage = useLocation().pathname;
-  const history = useHistory();
-
-  // If the user is not logged in, bring them to the login page.
-  useEffect(() => {
-    const idToken = localStorage.getItem("idToken");
-    if (!idToken || idToken.length === 0) {
-      history.push("/login");
-    }
-  }, []);
 
   return (
     <Fragment>
