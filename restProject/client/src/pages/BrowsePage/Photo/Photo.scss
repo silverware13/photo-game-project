@@ -5,27 +5,22 @@ Modified:    2/11/2022
 -----------------------------------------------------------------
 */
 
-.album {
+.photo {
   border: 2px solid var(--border-muted);
   border-radius: 4px;
+  text-align: center;
 
-  .title-container {
+  .photo-image {
+    overflow: hidden;
+    margin: 2rem 0;
+    width: auto;
+    height: 200px;
+    border-radius: 30px;
+  }
+
+  .title {
     text-align: center;
     font-size: 1.5rem;
-    color: var(--title);
-    background-color: var(--dark-header);
-  }
-
-  .album-btn {
-    color: var(--title);
-  }
-
-  .album-btn:hover {
-    color: var(--title);
-  }
-
-  .scores {
-    font-size: 1rem;
-    display: inline-block;
+    color: var(--text-content);
   }
 }

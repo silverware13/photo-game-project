@@ -85,7 +85,7 @@ export default function QuestionPage() {
     failedToLoad ? (
       <Error500Page />
     ) : (
-    <div className="page-question mb-4">
+    <div className="page-question mb-5">
       <Spinner loading={loading} />
 
       <PageTitle title="Photo Game" />
@@ -93,7 +93,7 @@ export default function QuestionPage() {
       {gameOver ? (
         <Card title="Game Over">
           {correctPhoto !== null && (
-            <img id="guess-image" src={correctPhoto.imageUrl} alt="Guess this animal" />
+            <img id="guess-image" src={correctPhoto.imageUrl} alt="Correct answer" />
           )}
           <h1>Game Over</h1>
           <h4>The correct answer was {correctPhoto.answer}</h4>

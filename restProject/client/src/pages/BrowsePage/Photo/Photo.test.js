@@ -7,16 +7,14 @@ Modified:    2/11/2022
 
 import React from "react";
 import { shallow } from "enzyme";
-import Album from "./Album";
+import Photo from "./Photo";
 
 it("Component renders without crashing", () => {
   shallow(
-    <Album
-      albumId={1}
-      name={"dogs"}
-      personalHighScore={10}
-      globalHighScore={25}
-      globalUser={"Test User"}
+    <Photo
+      photoId={1}
+      answer="Affenpinscher"
+      imageUrl="/photos/dog1.jpg"
     />
   );
 });

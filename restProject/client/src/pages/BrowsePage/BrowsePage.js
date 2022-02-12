@@ -9,9 +9,10 @@ import React, { useState } from "react";
 import Spinner from "../../components/Spinner/Spinner";
 import PageTitle from "../../components/PageTitle/PageTitle";
 import Card from "../../components/Card/Card";
-import Album from "./Album/Album";
+import Photo from "./Photo/Photo";
 import Error500Page from "../Error500Page/Error500Page";
 import useApi from "../../hooks/useApi";
+import { useParams } from "react-router-dom";
 import {API} from "../../utilities/constants";
 import "./BrowsePage.scss";
 
@@ -19,9 +20,10 @@ import "./BrowsePage.scss";
 export default function BrowsePage() {
   const [loading, setLoading] = useState(false);
   const [failedToLoad, setFailedToLoad] = useState(false);
-  const [albums, setAlbums] = useState([]);
+  const [photos, setPhotos] = useState([]);
+  const { albumId } = useParams();
 
-  // Get album data.
+  // Get photos from the current album.
   useApi(
     () => {
       setLoading(true);
@@ -29,11 +31,11 @@ export default function BrowsePage() {
     },
     {
       method: "GET",
-      url: `${API}/album`
+      url: `${API}/album/${albumId}`
     },
     async (response, responseBody) => {
       if (response.ok && responseBody) {
-        setAlbums(responseBody.albums);
+        setPhotos(responseBody.photos);
       } else {
         setFailedToLoad(true);
       }
@@ -46,23 +48,25 @@ export default function BrowsePage() {
     failedToLoad ? (
       <Error500Page />
     ) : (
-    <div className="page-home mb-4">
+    <div className="page-home mb-5">
       <Spinner loading={loading} />
 
-      <PageTitle title="Welcome to the Photo Game!" />
+      <PageTitle title="Photo Game" />
 
-      <Card title="Select an Album">
+      <Card title="Browsing Album">
         <div className="m-3">
-        {albums.map(album =>
-          <Album
-            key={album.albumId}
-            albumId={album.albumId}
-            name={album.name}
-            personalHighScore={album.personalHighScore}
-            globalHighScore={album.globalHighScore}
-            globalUser={album.globalUser}
-          />
-        )}
+          <div className="row align-items-center">
+            {photos.map(photo =>
+              <div className="col-6">
+                <Photo
+                  key={photo.photoId}
+                  photoId={photo.photoId}
+                  answer={photo.answer}
+                  imageUrl={photo.imageUrl}
+                />
+              </div>
+            )}
+          </div>
         </div>
       </Card>
     </div>

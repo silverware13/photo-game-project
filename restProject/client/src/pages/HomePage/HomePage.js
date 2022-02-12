@@ -46,10 +46,10 @@ export default function HomePage() {
     failedToLoad ? (
       <Error500Page />
     ) : (
-    <div className="page-home mb-4">
+    <div className="page-home mb-5">
       <Spinner loading={loading} />
 
-      <PageTitle title="Welcome to the Photo Game!" />
+      <PageTitle title="Photo Game" />
 
       <Card title="Select an Album">
         <div className="m-3">
