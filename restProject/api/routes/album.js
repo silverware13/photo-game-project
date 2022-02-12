@@ -8,8 +8,8 @@ Modified:    2/11/2022
 import express from "express";
 import { requireAuth } from "../utilities/authentication/cookieAuth.js";
 import { validationResult } from "express-validator";
-import { getQuestionVal, putScoreVal } from "../utilities/validation/requestValidation.js";
-import { getAlbums, getQuestion, putScore } from "../models/album.js";
+import { getPhotosVal, getQuestionVal, putScoreVal } from "../utilities/validation/requestValidation.js";
+import { getPhotos, getAlbums, getQuestion, putScore } from "../models/album.js";
 const app = express();
 
 // Get all albums.
@@ -24,8 +24,25 @@ app.get("/", requireAuth, async (req, res) => {
   }
 });
 
+// Get all photos in an album.
+app.get("/:albumId", requireAuth, getPhotosVal.validation, async (req, res) => {
+  try {
+    if (!validationResult(req).isEmpty()) {
+      res.status(400).json({ error: "Invalid request body / parameters", details: validationResult(req).errors });
+      return;
+    }
+
+    const result = await getPhotos(req.params.albumId);
+    res.status(200).send(result);
+
+  } catch (e) {
+    console.error(e);
+    res.status(500).send({ error: "An internal server error occurred. Please try again later." });
+  }
+});
+
 // Get four random photos from an album.
-app.get("/:albumId/question", getQuestionVal.validation, async (req, res) => {
+app.get("/:albumId/question", requireAuth, getQuestionVal.validation, async (req, res) => {
   try {
     if (!validationResult(req).isEmpty()) {
       res.status(400).json({ error: "Invalid request body / parameters", details: validationResult(req).errors });

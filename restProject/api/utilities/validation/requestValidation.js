@@ -34,6 +34,12 @@ export const getQuestionVal = Object.freeze({
   ]
 });
 
+export const getPhotosVal = Object.freeze({
+  validation: [
+    check("albumId").isInt({min: 1, max: 4294967295})
+  ]
+});
+
 export const putScoreVal = Object.freeze({
   validation: [
     check("albumId").isInt({min: 1, max: 4294967295}),

@@ -115,6 +115,24 @@ export async function getQuestion(albumId) {
   }
 }
 
+// Get all photos in a specific album.
+export async function getPhotos(albumId) {
+  try {
+    const sql = "SELECT photo_id AS photoId, answer, image_url AS imageUrl"
+    + " FROM photo"
+    + " WHERE album_id = ?;";
+    const result = await pool.query(sql, [albumId]);
+
+    const responseBody = {
+        photos: result[0]
+      };
+    return responseBody;
+
+  } catch (e) {
+    throw Error(e);
+  }
+}
+
 // Submit a new score for an album if it is higher than the current top score.
 export async function putScore(albumId, score, userId) {
   try {
