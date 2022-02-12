@@ -1,21 +1,33 @@
 /*
 Author:      Zachary Thomas
 Created:     2/10/2022
-Modified:    2/10/2022
+Modified:    2/11/2022
 -----------------------------------------------------------------
 */
 
 import express from "express";
 import { requireAuth } from "../utilities/authentication/cookieAuth.js";
 import { validationResult } from "express-validator";
-import { getQuestionVal, putScoreVal } from "../utilities/validation/requestValidation.js";
-import { getAlbums, getQuestion, putScore } from "../models/album.js";
+import { getAlbumVal, getQuestionVal, putScoreVal } from "../utilities/validation/requestValidation.js";
+import { getAlbum, getAlbums, getQuestion, putScore } from "../models/album.js";
 const app = express();
 
 // Get all albums.
 app.get("/", requireAuth, async (req, res) => {
   try {
     const result = await getAlbums(req.auth.userId);
+    res.status(200).send(result);
+
+  } catch (e) {
+    console.error(e);
+    res.status(500).send({ error: "An internal server error occurred. Please try again later." });
+  }
+});
+
+// Get all album.
+app.get("/:albumId", getAlbumVal.validation, requireAuth, async (req, res) => {
+  try {
+    const result = await getAlbum(req.params.albumId, req.auth.userId);
     res.status(200).send(result);
 
   } catch (e) {

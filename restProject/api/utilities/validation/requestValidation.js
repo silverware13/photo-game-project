@@ -1,7 +1,7 @@
 /*
 Author:      Zachary Thomas
 Created:     2/6/2022
-Modified:    2/10/2022
+Modified:    2/11/2022
 -----------------------------------------------------------------
 */
 
@@ -12,6 +12,12 @@ import {
   MIN_USERNAME_LENGTH,
   MAX_USERNAME_LENGTH
 } from "../constants.js";
+
+export const getAlbumVal = Object.freeze({
+  validation: [
+    check("albumId").isInt({min: 1, max: 4294967295})
+  ]
+});
 
 export const loginUserVal = Object.freeze({
   validation: [
