@@ -30,7 +30,7 @@ CREATE TABLE `user` (
   `hash` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `ui_user_email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (6,'testUser@gmail.com','Test User',0,'3ee583035f2f84469044792aaf79a3af$ef7c4a5cfa3fb96835bd10f23d65f5352cfd4cd3ff28ab7c7be4e14e4d9b1628'),(7,'testAdmin@gmail.com','Test Admin',1,'6fe675137dc35f386e6a6931c662c57f$832d09dbcb5e269ef1428a1c0685db115b2139d5c217f9402711261bbf28b1f1');
+INSERT INTO `user` VALUES (6,'testUser@gmail.com','Test User',0,'3ee583035f2f84469044792aaf79a3af$ef7c4a5cfa3fb96835bd10f23d65f5352cfd4cd3ff28ab7c7be4e14e4d9b1628'),(7,'testAdmin@gmail.com','Test Admin',1,'6fe675137dc35f386e6a6931c662c57f$832d09dbcb5e269ef1428a1c0685db115b2139d5c217f9402711261bbf28b1f1'),(8,'zak@gmail.com','Zak',0,'e3b510c7b1211f1f25ab18e43e25bf3d$df252067d0e9f3eb4008e429c5704559d52acd4a4435164e1d8311f32ddff6c5'),(9,'emily@gmail.com','Emily',0,'0370f02227130e7c0159ae199176f645$9b94407eb484c51bd2681b15bbd5e22accef28e4cdac9dd8aa7b0cc4b51ce4f1');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-11  2:41:16
+-- Dump completed on 2022-02-11 20:55:40
