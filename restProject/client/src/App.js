@@ -35,7 +35,7 @@ export default function App() {
               <LoginPage />
             </Route>
 
-            <Route path="/album/:albumId">
+            <Route path="/album/:albumId/play">
               <QuestionPage />
             </Route>
 

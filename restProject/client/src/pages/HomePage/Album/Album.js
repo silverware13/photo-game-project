@@ -14,20 +14,38 @@ import "./Album.scss";
 // Link and score for an individual album.
 export default function Album(props) {
   return (
-    <div className="album mx-3 my-2 px-3 py-2">
-      <Link to={`/album/${props.albumId}`}>
-        <button className="album-btn btn btn-secondary mb-4 w-100">
-          {formatTitleCase(props.name)}
-        </button>
-      </Link>
-      <p className="scores ms-2 me-4">
-        <span className="font-weight-bold">Personal High Score: </span>
-        {props.personalHighScore}
-      </p>
-      <p className="scores">
-        <span className="font-weight-bold">Global High Score: </span>
-        {props.globalHighScore} {props.globalUser ? `by ${formatTitleCase(props.globalUser)}` : ""}
-      </p>
+    <div className="album mx-3 my-4">
+      <div className="title-container mb-3 pb-2">
+        {formatTitleCase(props.name)}
+      </div>
+
+      <div className="row align-items-center mx-4 mb-3">
+        <div className="col">
+          <span className="font-weight-bold">Personal High Score: </span>
+          {props.personalHighScore}
+        </div>
+
+        <div className="col">
+          <span className="font-weight-bold">Global High Score: </span>
+          {props.globalHighScore} {props.globalUser ? `by ${formatTitleCase(props.globalUser)}` : ""}
+        </div>
+
+        <div className="col">
+          <Link to={`/album/${props.albumId}/play`}>
+            <button className="album-btn btn btn-secondary w-100">
+              Play
+            </button>
+          </Link>
+        </div>
+
+        <div className="col">
+          <Link to={`/album/${props.albumId}/browse`}>
+            <button className="album-btn btn btn-secondary w-100">
+              Browse
+            </button>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

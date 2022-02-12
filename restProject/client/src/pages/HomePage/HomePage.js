@@ -52,7 +52,7 @@ export default function HomePage() {
       <PageTitle title="Welcome to the Photo Game!" />
 
       <Card title="Select an Album">
-        <div className="mx-auto">
+        <div className="m-3">
         {albums.map(album =>
           <Album
             key={album.albumId}

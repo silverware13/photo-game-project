@@ -13,12 +13,6 @@ import {
   MAX_USERNAME_LENGTH
 } from "../constants.js";
 
-export const getAlbumVal = Object.freeze({
-  validation: [
-    check("albumId").isInt({min: 1, max: 4294967295})
-  ]
-});
-
 export const loginUserVal = Object.freeze({
   validation: [
     check("email").isEmail(),

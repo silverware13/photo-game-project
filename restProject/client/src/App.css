@@ -30,6 +30,7 @@ body {
   --border-muted: #a0a0a0aa;
   --link: #0645AD;
   --white: #fff;
+  --dark-header: #262626;
 }
 
 html, body {

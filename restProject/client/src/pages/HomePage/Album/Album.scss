@@ -9,8 +9,14 @@ Modified:    2/11/2022
   border: 2px solid var(--border-muted);
   border-radius: 4px;
 
-  .album-btn {
+  .title-container {
+    text-align: center;
     font-size: 1.5rem;
+    color: var(--title);
+    background-color: var(--dark-header);
+  }
+
+  .album-btn {
     color: var(--title);
   }
 
