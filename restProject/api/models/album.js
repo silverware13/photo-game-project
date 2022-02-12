@@ -11,7 +11,7 @@ import { pool } from "../utilities/database/mysqlPool.js";
 export async function getAlbums(userId) {
   try {
     // Get all albums.
-    let sql = "SELECT album_id AS albumId, name FROM album;";
+    let sql = "SELECT album_id AS albumId, name FROM album ORDER BY name;";
     let result = await pool.query(sql, []);
     const albums = result[0];
 
