@@ -32,7 +32,7 @@ export default function Album(props) {
 
         <div className="col">
           <Link to={`/album/${props.albumId}/play`}>
-            <button className="album-btn btn btn-secondary w-100">
+            <button className="album-btn btn btn-info w-100">
               Play
             </button>
           </Link>
@@ -40,7 +40,7 @@ export default function Album(props) {
 
         <div className="col">
           <Link to={`/album/${props.albumId}/browse`}>
-            <button className="album-btn btn btn-secondary w-100">
+            <button className="album-btn btn btn-info w-100">
               Browse
             </button>
           </Link>
