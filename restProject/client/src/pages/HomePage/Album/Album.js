@@ -1,7 +1,7 @@
 /*
 Author:      Zachary Thomas
-Created:     2/11/2022
-Modified:    2/11/2022
+Created:     2/21/2022
+Modified:    2/21/2022
 -----------------------------------------------------------------
 */
 
@@ -14,12 +14,20 @@ import "./Album.scss";
 // Link and score for an individual album.
 export default function Album(props) {
   return (
-    <div className="album mx-3 my-4">
-      <div className="title-container mb-3 pb-2">
-        {formatTitleCase(props.name)}
+    <div className="album container my-4">
+      <div className="title-container row align-items-center mb-3 py-2">
+        <div className="col">
+          {formatTitleCase(props.name)}
+        </div>
+
+        <div className="col-auto mb-1">
+          <button className="album-btn edit-btn btn btn-info">
+            Edit
+          </button>
+        </div>
       </div>
 
-      <div className="row align-items-center mx-4 mb-3">
+      <div className="row align-items-center mx-4 mb-4">
         <div className="col">
           <span className="font-weight-bold">Personal High Score: </span>
           {props.personalHighScore}

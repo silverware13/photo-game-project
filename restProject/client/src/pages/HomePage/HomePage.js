@@ -17,8 +17,16 @@ import "./HomePage.scss";
 
 // Home page.
 export default function HomePage() {
+  const initialAlbum = {
+    albumId: 0,
+    name: "",
+    photos: []
+  }
   const [loading, setLoading] = useState(false);
   const [failedToLoad, setFailedToLoad] = useState(false);
+  const [mode, setMode] = useState("create");
+  const [selectedId, setSelectedId] = useState(-1);
+  const [selectedAlbum, setSelectedAlbum] = useState(initialAlbum);
   const [albums, setAlbums] = useState([]);
 
   // Get album data.
@@ -65,6 +73,14 @@ export default function HomePage() {
         )}
         </div>
       </Card>
+
+      {/* <AlbumModal
+        mode={mode}
+        showModal={selectedId !== -1}
+        album={selectedAlbum}
+        onClose={() => setSelectedId(-1)}
+        onAction={(type, payload) => dispatch({ type: type, payload: payload })}
+      /> */}
     </div>
     )
   );

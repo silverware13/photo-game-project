@@ -1,0 +1,22 @@
+/*
+Author:      Zachary Thomas
+Created:     2/21/2022
+Modified:    2/21/2022
+-----------------------------------------------------------------
+*/
+
+.album-btn {
+  font-size: 1rem !important;
+}
+
+.album-text-input {
+  font-size: 2rem !important;
+  font-weight: bold !important;
+  border-color: var(--background-close) !important;
+  border-width: 0 !important;
+  border-style: none !important;
+}
+
+.album-text-input:hover {
+  background-color: var(--background-far);
+}
