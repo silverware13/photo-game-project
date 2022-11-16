@@ -1,9 +1,10 @@
 # Photo Game Project
 
 This application allows users to play a game where they view photos and select the correct option for each photo
-in an attempt to get a high score. Privileged users can also create new categories, submit new photos, update photos, or delete photos.
+in an attempt to get a high score. Admins can also create new categories, submit new photos, update photos, or delete photos.
 
 This is a hobby project that uses the following technologies:
+
 - React + TypeScript + Redux for the UI
 - Node + TypeScript + Express for the REST API
 - Node + Apollo for the Graph API
